@@ -1,0 +1,15 @@
+{
+  "name": "npm_community_exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mycow": "cowsay  -d-e\"UWU\" \"hrmmmmm\" "
+  },
+  "author": "marki",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.4.0"
+  }
+}
