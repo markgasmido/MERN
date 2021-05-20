@@ -1,0 +1,64 @@
+DATABASE
+  CREATE:
+      use DB_NAME
+  READ:
+      show dbs
+
+  UPDATE:
+      old_name.copyDatabase('old_name', 'new_name');
+      use old_name
+      old_name.dropDatabase();
+
+  DELETE:
+      use DATABASE_NAME
+      db.dropDatabase()
+
+
+COLLECTION
+
+    CREATE:
+        db.createCollection("COLLECTION_NAME")
+
+    READ:
+        show collections
+
+    UPDATE:
+        db.COLLECTION_NAME.renameCollection("NEW_COLLECTION_NAME")
+
+    DELETE:
+        db.COLLECTION_NAME.drop()
+
+
+DOCUMENTS
+
+    CREATE:
+        db.COLLECTION_NAME.insertOne({
+        "firstname":"marki",
+        "lastname":"gasmido",
+        "age":"100000"
+        })
+
+    CREATE MULTIPLE:
+        db.COLLECTION_NAME.insertMany([{},{}])
+
+    READ:
+        db.COLLECTION_NAME.find()
+
+    READ SPECIFIC (parse query object) WHERE MATCHES PARTIAL OBJECT:
+          db.practice.find(
+                            {
+                              "firstName": "marki"
+                            }
+        )
+
+    READ CERTAIN FIELD (parse projection object):
+        db.COLLECTION_NAME.find(
+        {},
+        {
+        "_id": false
+        "firstName": true,
+        "lastName": true
+    })
+
+    OPERATORS:
+        Equals - $eq

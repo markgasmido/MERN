@@ -1,0 +1,27 @@
+app.get(route, callback)
+-- This function tells what to do when a get request at the given route is called.
+--- The callback function has 2 parameters, request(req) and response(res).
+--- The request object(req) represents the HTTP request and has properties for the request query string, parameters, body, HTTP headers, etc.
+--- Similarly, the response object represents the HTTP response that the Express app sends when it receives an HTTP request.
+
+res.send()
+-- This function takes an object as input and it sends this to the requesting client.
+-- Here we are sending the string "Hello World!".
+
+app.listen(port, [host], [backlog], [callback]])
+-- This function binds and listens for connections on the specified host and port.
+-- Port is the only required parameter here.
+
+
+Install Curl
+--Curl is a popular command line tool often used for making HTTP requests.
+-- Curl supports a wide variety of other protocols, but, as a Node.js developer, you'll most likely use it to make HTTP requests to RESTful APIs.
+
+app.method(path, handler)
+-- This METHOD can be applied to any one of the HTTP verbs – get, set, put, delete.
+
+//The splice() method changes the contents of an array by removing 
+or replacing existing elements and/or adding new elements in place
+
+//“CORS” stands for Cross-Origin Resource Sharing. It allows you to make requests from one website to another website in the browser, 
+which is normally prohibited by another browser policy called the Same-Origin Policy (SOP).

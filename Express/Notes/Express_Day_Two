@@ -1,0 +1,137 @@
+Error Handling -
+
+
+Handle error by passing it onto the next() function
+    app.get('/error', (req, res, next) => {
+        const err = new Error('Useful error message');
+        next(err);
+    });
+
+Handle error by throwing the error > Express will pass the error handler for you
+    app.get('/error', (req, res, next) => {
+        throw new Error('Useful error message');
+    });
+
+
+4 built in errors:
+    syntax
+    type
+    range
+    reference
+
+
+Error handling middleware has four parameters (err,req,res,next). 
+
+
+
+Router - (provided with express package)
+Routers are used to decouple - increase code maintainability
+
+express router uses exactly the same functions that we saw in request handling
+
+    CREATING ROUTER
+        const router = require("expres").Router(); //create a new router object
+    
+    USING ROUTER
+        router.request(path,callback);
+        request = get/put/patch etc.
+
+routers objects function like "mini-aplpication" - they have their own middlware and routes but these
+are isolated tot he router rather than being used through the whole app
+
+
+Project structure -
+seperated into their own modules absed on their domain and kept in a /routes folder
+
+
+Exporting routes -
+    Our routes aren't much good to us if they're just sat in /routes so in order to add 
+    to the app we will first need to export them.
+
+    Example
+        const router = require("require").Router();
+        router.get("/get",(req,res) => {
+            //
+        })
+        module.exports = router;
+
+    importing - 
+        const exampleRoutes = require("folder-path");
+        app.use(exampleRoutes);
+
+Base path - 
+    When adding our routes tot he app we can specify a abse path, this path will be prepended
+    to the paths specified in the router.
+
+    example - 
+        const express = require('express');
+        const app = express();
+
+        const itemRoutes = require('./routes/items.js');
+
+        app.use('items', itemRoutes);
+    
+    final routes will become
+
+        /items/get
+        /items/create
+        /items/update
+        /items/delete
+
+Nesting middleware - 
+    EXAMPLE -
+             const express = require('express');
+
+            const app = express();
+
+            const itemRoutes = require('./routes/items');
+
+            const logger = (req, res, next) => {
+                console.log(new Date());
+                next();
+            }
+
+            app.use('items', logger, itemRoutes);'
+
+
+
+
+Mongoose -
+    CREATE
+        let newdoc = new MyModel({example:data});
+
+        newdoc.save().then(() => console.log(`done`));
+
+        const prod  = new Product({
+            name:"carrots",
+            price:1.23,
+            location:{
+                aisle:13,
+                shelf:3
+            },
+            onSale:false
+        });
+
+        prod.save().then(()=> console.log(`complete`));
+    
+    READ
+        let Product = mongoose.model("Product",productSchema);
+
+        Product.find(
+            {"onSale":true},
+             "name price",
+             (err,prods) => {
+                 if(err) {
+                     console.error("An error occured:" err);
+                 } else {
+                     console.log("Products on sale:");
+                     prods.forEach((prod) => console.log(prod.name,prod.price));
+                 }
+             }
+        )
+
+    UPDATE 
+        prod.onSale = true;
+        await prod.save();
+
+        

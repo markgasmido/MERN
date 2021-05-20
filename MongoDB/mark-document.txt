@@ -1,0 +1,83 @@
+use document_practice
+
+db.createCOllection("people")
+
+db.people.insertOne({
+  "first_name":"mark",
+  "last_name":"gasmido",
+  "age":23,
+  "height":"tall_enough",
+  "hobbies":[
+    "NodeJS",
+    "MongoDB",
+    "React",
+    "Express"
+  ]
+})
+
+db.people.insertMany([{
+  "first_name":"mark",
+  "last_name":"gasmido",
+  "age":23,
+  "height":"tall_enough",
+  "hobbies":[
+    "NodeJS",
+    "MongoDB",
+    "React",
+    "Express"
+  ]
+},{
+  "first_name":"marktwo",
+  "last_name":"gasmidotwo",
+  "age":232,
+  "height":"tall_enough_two",
+  "hobbies":[
+    "NodeJStwo",
+    "MongoDBtwo",
+    "Reacttwo",
+    "Expresstwo"
+  ]
+},{
+  "first_name":"markthree",
+  "last_name":"gasmidothree",
+  "age":2323,
+  "height":"tall_enough_three",
+  "hobbies":[
+    "NodeJSthree",
+    "MongoDBthree",
+    "Reactthree",
+    "Expressthree"
+  ]
+}])
+
+db.people.updateOne({
+"first_name":"mark",
+"last_name":"gasmido"
+},{"$set":{"roulette":true}})
+
+db.people.updateOne({
+"first_name":"marktwo",
+"last_name":"gasmidotwo"
+},{
+"$set" : {"guitar":false}
+})
+
+db.people.find({
+  "age":{"$gte":50}
+})
+
+db.people.find({"age":{ "$lt":30}},{"_id":false,"first_name":true,"last_name":true})
+
+
+
+db.people.updateMany({"age":{" $gt":30}},{"$set":{"glasses":true}})
+
+db.person.deleteMany({"glasses":{"$ne": true}})
+
+db.person.updateOne({
+  "first_name":"markthree",
+  "last_name":"gasmidothree"
+},{"$set":{"dog":{
+  "name":"woofer",
+  "age":1
+}}})

@@ -1,0 +1,15 @@
+cd c:\data\db
+cd C:\Program Files\MongoDB\Server\4.4\bin
+C:\Program Files\MongoDB\Server\4.4\bin>mongod.exe --dbpath "C:\data"
+
+
+This will show waiting for connections message on the console output,
+which indicates that the mongod.exe process is running successfully.
+
+
+
+on one command prompt to open connection
+C:\Program Files\MongoDB\Server\4.2\bin>mongod.exe --dbpath "C:\data"
+
+on another command prompt to start mongodb
+C:\Program Files\MongoDB\Server\4.2\bin>mongo.exe

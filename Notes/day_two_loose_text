@@ -1,0 +1,18 @@
+ECMAScript > European Computer Manufacturing Association > 
+DOM > Document Object Model > a heirarchical reprisentation of your HTML object on a webpage 
+BOM >  Browser Object Model > 
+
+
+1) function declaration/named function
+functiion sayHello(p1){
+    return
+}
+
+2) function expression/anonymous function
+
+let sayHello = function(){};
+
+3) Arrow function
+
+let sayHello = () => {};
+

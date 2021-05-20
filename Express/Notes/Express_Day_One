@@ -1,0 +1,103 @@
+Handling requests - 
+Requests have two major components we are interested in: the path and the method. 
+The path is the location the request will be sent to and the  method is the type of request.
+
+EXAMPLE GET REQUEST - (read data)
+app.get("/hello",(req,res) => console.log("Hello,World!"));
+[GET]   [PATH]    [CALLBACK FUNCTION]
+
+
+EXAMPLE POST REQUEST - (create data)
+app.post("/create", (req,res) => console.log("create"));
+
+EXAMPLE PUT REQUEST - (replace data)
+app.put("/replace",(req,res) => console.log("replace"));
+
+EXAMPLE PATCH REQUEST - (partial updates)
+app.patch("/update",(req,res) => console.log("update"));
+
+EXAMPLE DELETE REQUEST - (delete data)
+app.delete("/delete",(req,res) => console.log("delete"));
+
+
+req ?
+req is an object that represents the received request and can be used to view sent data and request metadata
+
+    URL parameters 
+        One way to send data is as part of the URL itself.  To use URL parameters in express they msujt first 
+        be declared in the path using a : and then accessed via the req.params object
+            
+            app.delete("/delete/id",(req,res)  => {
+                console.log(req.params.id);
+            })
+
+    Query parameters
+        Query parameters are appended to the end of aURL and take a very particular format. 
+        Query parameters always start with a ?.
+        Each parameter takes the format of key=value
+        Parameters are seperated by an &
+
+            Example -
+
+                Example object:
+                    {
+                        "id" : 1,
+                        "name" : "Barry",
+                        "age" : 44,
+                        "job" : "Receptionist"
+                    }
+                
+                if we wanted to get name and age >> might send it to a path like :
+
+                /update/1?name=barry&age=22
+
+                app.patch("/update/:id",(req,res) => {
+                    const id = req.params.id;
+                    console.log("id: ", id);
+                    const name = req.query.name;
+                    console.log("Name: ", name);
+                    const age = req.query.age;
+                    console.log("Age: ",age);
+                });
+
+    Request body
+
+        Larger or more complex data can be sent via the request body, typically in JSON format.
+        In order to aprse JSON from the request body we must use the json-parser provided by express.json()
+
+            app.use(express.json())
+
+        ensuring this is above any request handling
+
+        app.put("/replace/:id",(req,res) => {
+            const id = req.params.id;
+            console.log("id: ", id);
+            const body = req.body;
+            console.log("Body: ",req.body);
+        });
+
+
+res ?
+
+The res object is used to control the response Express will send to a particular request
+
+    res.send    
+    res.send() will send the response with any data passed into this function passed into the response body.
+    If you don't send a response then you msut call the next function or your request will hang 
+
+        app.get("/hello",(req,res) =>{
+            res.send("Hello,World");
+        })
+
+    res.status
+    By default responses will have a status code of 200 for OK. 
+
+        app.get("/hello",(req,res) => {
+            res.status(200).send("hello,world");
+        })
+
+    example error
+
+        app.get("/error",(req,res) => {
+            res.status(500).send("mistakesmade");
+        })

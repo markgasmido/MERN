@@ -1,0 +1,130 @@
+ususe student_record
+
+db.student.insertOne({
+"firstName": "James",
+"surname": "Smith",
+"age": 28,
+"height": 170,
+"skills": [
+"HTML5",
+"CSS3",
+"JavaScript"
+]
+})
+
+db.student.find().pretty()
+
+db.student.insertMany(
+[{
+"firstName": "John",
+"surname": "Wang",
+"age": 23,
+"height": 170,
+"skills": [
+"HTML5",
+"CSS3",
+"JavaScript",
+"ReactJS"
+]
+},
+{
+"firstName": "Mary",
+"surname": "Li",
+"age": 21,
+"height": 157,
+"skills": [
+"HTML5",
+"CSS3",
+"JavaScript",
+"Angular"
+]
+},
+{
+"firstName": "Robert",
+"surname": "Zhang",
+"age": 21,
+"height": 180,
+"skills": [
+"HTML5",
+"CSS3",
+"JavaScript",
+"VueJS",
+"ReactJS"
+]
+},
+{
+"firstName": "Jennifer",
+"surname": "Hernandez",
+"age": 21,
+"height": 168,
+"skills": [
+"HTML5",
+"CSS3",
+"JavaScript"
+]
+}
+])
+
+db.student.updateOne(
+{
+"firstName": "John",
+"surname": "Wang"
+},
+{
+"$push": {
+"skills": "Java"
+}
+}
+)
+
+
+db.student.updateOne(
+{
+"firstName": "Robert",
+"surname": "Zhang"
+},
+{
+"$pull": {
+skills: "VueJS"
+}
+}
+)
+
+
+db.student.find(
+{
+"age": {
+"$gte": 23
+}
+}
+).pretty()
+
+db.student.deleteMany(
+{
+"glasses": {"$ne": true}
+}
+)
+
+db.student.updateOne(
+{
+"firstName": "James"
+},
+{
+"$set": {
+"car": {
+"name": "Vauxhall",
+"model": "Crossland"
+}
+}
+}
+)
+
+db.student.find(
+{
+"skills": {
+"$nin": [
+"Java"
+]
+}
+}
+).pretty()
